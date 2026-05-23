@@ -28,10 +28,10 @@
 - [x] 1.3 根据架构编写前端 HTML 模板 (`index_wasm.html`, `index_webcodecs.html`)
 - [x] 1.4 创建自动化管理规划文档 (即本文档)
 
-### 阶段二：前端核心依赖准备 (Phase 2: Dependencies) 🔴 待认领
-- [ ] 2.1 引入 `Jessibuca` 核心静态资源（可通过脚本自动下载或手动放入）。
+### 阶段二：前端核心依赖准备 (Phase 2: Dependencies) � 完成
+- [x] 2.1 引入 `Jessibuca` 核心静态资源（可通过脚本自动下载或手动放入）。
   - 需要落实的文件：`jessibuca.js`, `decoder.js`, `decoder.wasm`。
-- [ ] 2.2 验证引入路径是否在 HTML 模板中正确匹配。
+- [x] 2.2 验证引入路径是否在 HTML 模板中正确匹配。
 
 ### 阶段三：测试环境与基建拉起 (Phase 3: Environment Setup) 🔴 待认领
 - [ ] 3.1 编写并启动一个简易本地 Web 服务器（推荐使用 Python `http.server` 或 Node.js `live-server`），解决后续 WASM 跨域和资源加载问题。
