@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>方案B测试：WebCodecs硬解低延迟</title>
+    <script src="./jessibuca.js"></script>
+    <style>
+        #video-container { width: 800px; height: 450px; background: #000; }
+        .controls { margin-top: 10px; }
+    </style>
+</head>
+<body>
+    <h2>方案 B：WebCodecs GPU硬解测试 (更低延迟/极低功耗)</h2>
+    <div id="video-container"></div>
+    
+    <div class="controls">
+        <!-- 方案B推荐使用 fMP4 格式流 -->
+        <input type="text" id="stream-url" value="ws://127.0.0.1:80/live/test.live.mp4" style="width: 400px;">
+        <button onclick="playVideo()">播放</button>
+        <button onclick="pauseVideo()">停止</button>
+    </div>
+
+    <script>
+        let jessibucaPlayer = null;
+
+        function initPlayer() {
+            // 检测当前浏览器是否支持 WebCodecs
+            if (typeof MediaStreamTrackProcessor === 'undefined' && !window.VideoDecoder) {
+                alert("当前浏览器不支持 WebCodecs 硬解！请使用 Chrome 94+ 并确保在localhost或HTTPS环境下运行。");
+            }
+
+            jessibucaPlayer = new Jessibuca({
+                container: document.getElementById('video-container'),
+                videoBuffer: 0,                 // 核心：0 缓冲区
+                isResize: false,
+                text: "",
+                loadingText: "硬解加载中...",
+                // --- 方案 B 核心参数配置 ---
+                forceNoOffscreen: true,         
+                useWebCodecs: true,             // 强制开启 WebCodecs 硬解码
+                useWasm: false,                 // 关闭 WASM 软解
+                useMSE: false                   // 关闭 MSE
+            });
+
+            jessibucaPlayer.on('error', (error) => {
+                console.error('WebCodecs Player Error:', error);
+            });
+        }
+
+        function playVideo() {
+            const url = document.getElementById('stream-url').value;
+            if (!jessibucaPlayer) initPlayer();
+            jessibucaPlayer.play(url);
+        }
+
+        function pauseVideo() {
+            if (jessibucaPlayer) {
+                jessibucaPlayer.pause();
+                jessibucaPlayer.destroy();
+                jessibucaPlayer = null;
+            }
+        }
+
+        initPlayer();
+    </script>
+</body>
+</html>

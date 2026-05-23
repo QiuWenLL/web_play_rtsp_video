@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>方案A测试：WASM低延迟播放</title>
+    <!-- 引入播放器核心 JS -->
+    <script src="./jessibuca.js"></script>
+    <style>
+        #video-container { width: 800px; height: 450px; background: #000; }
+        .controls { margin-top: 10px; }
+    </style>
+</head>
+<body>
+    <h2>方案 A：WASM 软解测试 (<500ms)</h2>
+    <div id="video-container"></div>
+    
+    <div class="controls">
+        <input type="text" id="stream-url" value="ws://127.0.0.1:80/live/test.live.flv" style="width: 400px;">
+        <button onclick="playVideo()">播放</button>
+        <button onclick="pauseVideo()">停止</button>
+    </div>
+
+    <script>
+        let jessibucaPlayer = null;
+
+        function initPlayer() {
+            jessibucaPlayer = new Jessibuca({
+                container: document.getElementById('video-container'),
+                videoBuffer: 0,                // 核心：设置缓冲时间为 0 秒，实现极致低延迟
+                isResize: false,
+                text: "",
+                loadingText: "视频加载中...",
+                useWasm: true,                 // 强制开启 WASM 解码
+                useMSE: false,                 // 关闭 MSE 以保证低延迟
+                // 必须指定 decoder.js 的正确相对/绝对路径
+                decoder: './decoder.js' 
+            });
+
+            // 监听错误日志，便于调试
+            jessibucaPlayer.on('error', (error) => {
+                console.error('WASM Player Error:', error);
+            });
+        }
+
+        function playVideo() {
+            const url = document.getElementById('stream-url').value;
+            if (!jessibucaPlayer) initPlayer();
+            jessibucaPlayer.play(url);
+        }
+
+        function pauseVideo() {
+            if (jessibucaPlayer) {
+                jessibucaPlayer.pause();
+                jessibucaPlayer.destroy();
+                jessibucaPlayer = null;
+            }
+        }
+
+        // 初始化
+        initPlayer();
+    </script>
+</body>
+</html>
