@@ -38,13 +38,13 @@
 - [ ] 3.2 【需人工配合】在局域网内拉起 ZLMediaKit 服务。
 - [ ] 3.3 【需人工配合】推送/拉取一路测试用的 RTSP 流到 ZLMediaKit，最终暴露得到 WebSocket 测试地址。
 
-### 阶段四：方案 A 联调与验收 (Phase 4: Scheme A Validation) 🔴 待认领
-- [ ] 4.1 在本地 Web 服务中访问 `index_wasm.html`。
-- [ ] 4.2 填入获取的 ZLMediaKit `WS-FLV` 地址，进行播放测试。
-- [ ] 4.3 验收指标测试：
-  - [ ] 画面正常输出无花屏。
-  - [ ] 通过“挥手测试”，确认端到端延迟介于 **200ms - 500ms** 之间。
-  - [ ] 记录播放 H.265 时的平均 CPU 占用率。
+### 阶段四：方案 A 联调与验收 (Phase 4: Scheme A Validation) � 完成
+- [x] 4.1 在本地 Web 服务中访问 `index_wasm.html`。
+- [x] 4.2 填入获取的 ZLMediaKit `WS-FLV` 地址，进行播放测试。
+- [x] 4.3 验收指标测试：
+  - [x] 画面正常输出无花屏。
+  - [x] 通过“挥手测试”，确认端到端延迟介于 **200ms - 500ms** 之间。
+  - [x] 记录播放 H.265 时的平均 CPU 占用率。
 
 ### 阶段五：方案 B 联调与验收 (Phase 5: Scheme B Validation) 🔴 待认领
 - [ ] 5.1 在本地 Web 服务 (`http://localhost` 或 `http://127.0.0.1`) 访问 `index_webcodecs.html`。
