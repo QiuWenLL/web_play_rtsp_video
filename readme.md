@@ -1,5 +1,9 @@
 # 网页端 RTSP 零延迟播放技术验证方案（PRD）
 
+## License
+
+This project is licensed under the MIT License. See the `LICENSE` file for details.
+
 ## 1. 概述
 ### 1.1 目的
 解决当前 HLS 方案延迟过高（十多秒）的问题。基于现有硬件生态（RK3576/RK3588 + ZLMediaKit），在网页端实现 **H.264/H.265 编码下 <500ms 的极致低延迟** 视频播放。
