@@ -46,13 +46,13 @@
   - [x] 通过“挥手测试”，确认端到端延迟介于 **200ms - 500ms** 之间。
   - [x] 记录播放 H.265 时的平均 CPU 占用率。
 
-### 阶段五：方案 B 联调与验收 (Phase 5: Scheme B Validation) 🔴 待认领
-- [ ] 5.1 在本地 Web 服务 (`http://localhost` 或 `http://127.0.0.1`) 访问 `index_webcodecs.html`。
-- [ ] 5.2 填入获取的 ZLMediaKit `WS-fMP4` 地址，进行播放测试。
-- [ ] 5.3 验收指标测试：
-  - [ ] 确认控制台打印启用 WebCodecs 成功，无降级 WASM。
-  - [ ] 确认端到端延迟低至 **100ms - 300ms**。
-  - [ ] 确认 CPU 占用率极低，GPU 视频解码模块占有率上升。
+### 阶段五：方案 B 联调与验收 (Phase 5: Scheme B Validation) � 完成
+- [x] 5.1 在本地 Web 服务 (`http://localhost` 或 `http://127.0.0.1`) 访问 `index_webcodecs.html`。
+- [x] 5.2 填入获取的 ZLMediaKit `WS-FLV/WS-fMP4` 地址，进行播放测试。
+- [x] 5.3 验收指标测试：
+  - [x] 确认控制台打印启用 WebCodecs 成功，无降级 WASM。
+  - [x] 确认端到端延迟低至 **100ms - 300ms**。
+  - [x] 确认 CPU 占用率极低，GPU 视频解码模块占有率上升。
 
 ### 阶段六：项目复盘与交付 (Phase 6: Retrospective & Delivery) 🔴 待认领
 - [ ] 6.1 整理两套方案的延迟与性能数据。
